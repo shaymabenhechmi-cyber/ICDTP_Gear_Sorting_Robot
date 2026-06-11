@@ -8,6 +8,22 @@ Provides:
   • ArUco scale detection
   • YOLO model loader, runner, box-drawer
   • Sidebar UI renderer
+
+FIXES vs original
+─────────────────
+1. update_scale(): scale was inverted (mm/px instead of px/mm).
+   Corrected to  side_px / MARKER_SIZE_MM  so every consumer that
+   does  diam = (r*2) / px_mm  gets a real millimetre value.
+2. update_scale(): now averages all 4 marker sides instead of only
+   the first edge – more stable under perspective distortion.
+3. run_yolo(): guarded against model=None (YOLO failed to load).
+4. draw_aruco(): guarded against empty corners list (crash fix).
+5. _draw_rounded_rect() outlined mode: arc quadrant angles were
+   wrong/duplicated; replaced with correct TL/TR/BL/BR arcs.
+6. build_sidebar(): added y_max guard so rows never overwrite the
+   verdict or footer area when many metrics are displayed.
+7. build_sidebar(): PENDING text colour was _DIM-on-_DIM (invisible);
+   corrected to _WHITE so it remains readable.
 """
 
 import cv2
@@ -16,10 +32,10 @@ import numpy as np
 # ─────────────────────────────────────────────────────────────────
 # GLOBAL DEFAULTS  (override per-script before calling helpers)
 # ─────────────────────────────────────────────────────────────────
-MARKER_SIZE_MM   = 30.0
-FALLBACK_PX_PER_MM = 4.0
-YOLO_CONF        = 0.35
-YOLO_EVERY_N     = 4
+MARKER_SIZE_MM     = 30.0   # real side length of ArUco marker (mm)
+FALLBACK_PX_PER_MM = 4.0   # fallback when marker not yet seen
+YOLO_CONF          = 0.35
+YOLO_EVERY_N       = 4
 
 DEFECT_COLORS = [
     (0,   255, 100),
@@ -34,7 +50,11 @@ DEFECT_COLORS = [
 # ─────────────────────────────────────────────────────────────────
 
 def exp_smooth(current, previous, alpha=0.15):
-    """Exponential moving average. Returns `current` on first call."""
+    """
+    Exponential moving average.
+    Returns `current` on first call (previous=None).
+    `current` must never be None.
+    """
     if previous is None:
         return current
     return alpha * current + (1.0 - alpha) * previous
@@ -43,36 +63,53 @@ def exp_smooth(current, previous, alpha=0.15):
 # ─────────────────────────────────────────────────────────────────
 # ARUCO SCALE
 # ─────────────────────────────────────────────────────────────────
-_aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_50)
-_aruco_det  = cv2.aruco.ArucoDetector(_aruco_dict, cv2.aruco.DetectorParameters())
+
+_aruco_dict   = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_50)
+_aruco_params = cv2.aruco.DetectorParameters()          # must be instantiated
+_aruco_det    = cv2.aruco.ArucoDetector(_aruco_dict, _aruco_params)
 
 
 def update_scale(gray, smoothed_px_mm, alpha=0.05):
     """
-    Detect ArUco marker in `gray` and return updated smoothed px/mm.
-    Also returns corners + ids so the caller can draw them.
+    Detect an ArUco marker in `gray` and return the updated px/mm scale.
 
-    Returns:
-        smoothed_px_mm  – updated value (or unchanged if no marker found)
-        corners         – raw ArUco corners (may be empty)
-        ids             – raw ArUco ids (may be None)
+    FIX: original used  MARKER_SIZE_MM / side_px  → gives mm/px (inverted).
+    Correct formula is  side_px / MARKER_SIZE_MM  → gives px/mm.
+    All callers use  diam_mm = (r_px * 2) / px_mm,  which only works when
+    px_mm is truly pixels-per-millimetre.
+
+    Returns
+    ───────
+    smoothed_px_mm  updated px/mm value (or unchanged if no marker found)
+    corners         raw ArUco corners (may be empty list)
+    ids             raw ArUco ids     (may be None)
     """
     corners, ids, _ = _aruco_det.detectMarkers(gray)
     if ids is not None and len(corners) > 0:
-        side_px = np.linalg.norm(corners[0][0][0] - corners[0][0][1])
+        c = corners[0][0]   # shape (4, 2)  – four corner points
+        # Average all four sides for robustness against perspective tilt
+        sides = [
+            np.linalg.norm(c[0] - c[1]),
+            np.linalg.norm(c[1] - c[2]),
+            np.linalg.norm(c[2] - c[3]),
+            np.linalg.norm(c[3] - c[0]),
+        ]
+        side_px = float(np.mean(sides))
         if side_px > 0:
-            measured = MARKER_SIZE_MM / side_px
+            measured       = side_px / MARKER_SIZE_MM   # px/mm  ← FIXED
             smoothed_px_mm = exp_smooth(measured, smoothed_px_mm, alpha)
     return smoothed_px_mm, corners, ids
 
 
 def draw_aruco(frame, corners, ids):
-    if ids is not None:
+    """Draw detected ArUco markers onto frame (in-place).
+    FIX: original crashed when corners was an empty list."""
+    if ids is not None and len(corners) > 0:
         cv2.aruco.drawDetectedMarkers(frame, corners, ids)
 
 
 def get_scale(smoothed_px_mm):
-    """Return smoothed scale or fallback."""
+    """Return smoothed scale (px/mm) or the global fallback."""
     return smoothed_px_mm if smoothed_px_mm is not None else FALLBACK_PX_PER_MM
 
 
@@ -82,8 +119,8 @@ def get_scale(smoothed_px_mm):
 
 def load_yolo(model_path):
     """
-    Load a YOLOv8 model. Returns (model, True) on success,
-    (None, False) on failure.
+    Load a YOLOv8 model.
+    Returns (model, True) on success, (None, False) on failure.
     """
     try:
         from ultralytics import YOLO
@@ -100,7 +137,12 @@ def run_yolo(model, frame, conf=None):
     """
     Run inference on `frame`.
     Returns list of (x1, y1, x2, y2, conf, cls_id, cls_name).
+
+    FIX: guard against model=None so callers never crash when YOLO
+    failed to load.
     """
+    if model is None:           # ← FIX
+        return []
     if conf is None:
         conf = YOLO_CONF
     detections = []
@@ -123,13 +165,14 @@ def draw_yolo_boxes(frame, detections):
         (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.52, 1)
         cv2.rectangle(frame, (x1, y1 - th - 6), (x1 + tw + 4, y1), color, -1)
         cv2.putText(frame, label, (x1 + 2, y1 - 4),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.52, (255, 255, 255), 1)
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.52, (255, 255, 255), 1,
+                    cv2.LINE_AA)
 
 
 def best_gear_box(detections, healthy_name, damaged_name):
     """
-    Return the highest-confidence detection whose class matches
-    healthy_name or damaged_name.  Falls back to any detection.
+    Return highest-confidence detection matching healthy_name or
+    damaged_name.  Falls back to any detection.  Returns None if empty.
     """
     named = [d for d in detections
              if d[6].lower() in (healthy_name.lower(), damaged_name.lower())]
@@ -142,56 +185,57 @@ def best_gear_box(detections, healthy_name, damaged_name):
 # ─────────────────────────────────────────────────────────────────
 SIDEBAR_W = 240  # pixels
 
-# Palette
-_BG      = (18,  22,  28)
-_CARD    = (28,  34,  42)
-_BORDER  = (45,  55,  68)
-_WHITE   = (230, 235, 240)
-_DIM     = (110, 120, 135)
-_GREEN   = (60,  220, 120)
-_YELLOW  = (230, 185,  40)
-_RED     = (220,  65,  65)
-_CYAN    = (60,  200, 210)
-_ORANGE  = (220, 135,  50)
+# Colour palette (BGR tuples for OpenCV)
+_BG     = (18,  22,  28)
+_CARD   = (28,  34,  42)
+_BORDER = (45,  55,  68)
+_WHITE  = (230, 235, 240)
+_DIM    = (110, 120, 135)
+_GREEN  = (60,  220, 120)
+_YELLOW = (230, 185,  40)
+_RED    = (220,  65,  65)
+_CYAN   = (60,  200, 210)
+_ORANGE = (220, 135,  50)
 
 
-def _status_color(status_key):
-    """Map a status key string to an RGB color."""
-    sk = status_key.upper()
-    if "OK" in sk or "PASSED" in sk or "GOOD" in sk:
+def _status_color(val):
+    v = val.upper()
+    if any(x in v for x in ("OK", "PASSED", "GOOD")):
         return _GREEN
-    if "DEFECT" in sk or "FAIL" in sk or "BAD" in sk:
+    if any(x in v for x in ("DEFECT", "FAIL", "BAD")):
         return _RED
-    if "CHECKING" in sk or "SCANNING" in sk:
+    if any(x in v for x in ("CHECKING", "SCANNING")):
         return _YELLOW
     return _DIM
 
 
 def _draw_rounded_rect(img, pt1, pt2, color, radius=6, thickness=-1):
-    """Draw a filled or outlined rounded rectangle (OpenCV helper)."""
+    """Filled (thickness=-1) or outlined rounded rectangle.
+
+    FIX: original outlined mode had wrong/duplicated arc angles.
+    Correct quadrant arcs: TL=180-270, TR=270-360, BL=90-180, BR=0-90.
+    """
     x1, y1 = pt1
     x2, y2 = pt2
     r = min(radius, (x2 - x1) // 2, (y2 - y1) // 2)
-    # fill body
     if thickness == -1:
         cv2.rectangle(img, (x1 + r, y1), (x2 - r, y2), color, -1)
         cv2.rectangle(img, (x1, y1 + r), (x2, y2 - r), color, -1)
-        for cx, cy in [(x1+r, y1+r), (x2-r, y1+r), (x1+r, y2-r), (x2-r, y2-r)]:
+        for cx, cy in [(x1+r, y1+r), (x2-r, y1+r),
+                       (x1+r, y2-r), (x2-r, y2-r)]:
             cv2.circle(img, (cx, cy), r, color, -1)
     else:
-        cv2.rectangle(img, (x1 + r, y1), (x2 - r, y2), color, thickness)
-        cv2.rectangle(img, (x1, y1 + r), (x2, y2 - r), color, thickness)
-        for cx, cy in [(x1+r, y1+r), (x2-r, y1+r), (x1+r, y2-r), (x2-r, y2-r)]:
-            cv2.ellipse(img, (cx, cy), (r, r), 0, 180, 270, color, thickness)
-            cv2.ellipse(img, (cx, cy), (r, r), 0,  90, 180, color, thickness)
-            cv2.ellipse(img, (cx, cy), (r, r), 0,   0,  90, color, thickness)
-            cv2.ellipse(img, (cx, cy), (r, r), 0, 270, 360, color, thickness)
+        cv2.rectangle(img, (x1 + r, y1),     (x2 - r, y2),     color, thickness)
+        cv2.rectangle(img, (x1,     y1 + r), (x2,     y2 - r), color, thickness)
+        cv2.ellipse(img, (x1+r, y1+r), (r, r), 0, 180, 270, color, thickness)  # TL
+        cv2.ellipse(img, (x2-r, y1+r), (r, r), 0, 270, 360, color, thickness)  # TR
+        cv2.ellipse(img, (x1+r, y2-r), (r, r), 0,  90, 180, color, thickness)  # BL
+        cv2.ellipse(img, (x2-r, y2-r), (r, r), 0,   0,  90, color, thickness)  # BR
 
 
 def _put(img, text, x, y, scale=0.48, color=_WHITE, bold=False):
-    thickness = 2 if bold else 1
     cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_SIMPLEX,
-                scale, color, thickness, cv2.LINE_AA)
+                scale, color, 2 if bold else 1, cv2.LINE_AA)
 
 
 def _divider(img, y, x1, x2):
@@ -200,92 +244,87 @@ def _divider(img, y, x1, x2):
 
 def build_sidebar(height, title, rows, final_ok, scale_text):
     """
-    Create a SIDEBAR_W × height sidebar image.
+    Build a SIDEBAR_W × height panel.
 
     Parameters
     ──────────
-    height      : int   – must match the camera frame height
-    title       : str   – script title shown at top  e.g. "SIDE VIEW"
-    rows        : list of dicts, each:
-                    {"label": str,   # section header
-                     "items": list of (key_str, value_str)}
-                  e.g. [{"label": "STEP 1 · YOLO",
-                          "items": [("Status", "PASSED")]},
-                         {"label": "STEP 2 · DIMS",
-                          "items": [("Height", "20.1 mm"),
-                                    ("Helix",  "15.2 °")]}]
-    final_ok    : bool | None   – True=green, False=red, None=pending
-    scale_text  : str   – e.g. "ArUco  4.12 px/mm"
-    """
-    sb = np.full((height, SIDEBAR_W, 3), _BG, dtype=np.uint8)
+    height     : int
+    title      : str            e.g. "TOP VIEW"
+    rows       : list of dicts  {"label": str, "items": [(key, val), …]}
+    final_ok   : True  → green  GOOD GEAR
+                 False → red    DEFECTIVE
+                 None  → grey   PENDING…
+    scale_text : str            e.g. "ArUco  4.12 px/mm"
 
-    # ── Title bar ──────────────────────────────────────────
+    FIX: added y_max guard so metric rows never overwrite the verdict
+    block or footer regardless of how many rows are supplied.
+    FIX: PENDING text was _DIM drawn on a _DIM background (invisible);
+    corrected to _WHITE.
+    """
+    sb    = np.full((height, SIDEBAR_W, 3), _BG, dtype=np.uint8)
+    pad_x = 12
+
+    # ── Title bar ──────────────────────────────────────────────
     cv2.rectangle(sb, (0, 0), (SIDEBAR_W, 44), _CARD, -1)
     cv2.line(sb, (0, 44), (SIDEBAR_W, 44), _BORDER, 1)
-    # small accent stripe
     cv2.rectangle(sb, (0, 0), (4, 44), _CYAN, -1)
     _put(sb, "GEAR INSPECT", 14, 18, scale=0.52, color=_WHITE, bold=True)
     _put(sb, title,          14, 36, scale=0.40, color=_CYAN)
 
-    y = 58
-    pad_x = 12
+    y     = 58
+    # Reserve 70 px for verdict + 24 px for footer
+    y_max = height - 70 - 24
 
     for section in rows:
-        # Section label
+        if y >= y_max:
+            break
         _put(sb, section["label"], pad_x, y, scale=0.38, color=_DIM)
         y += 4
         _divider(sb, y, pad_x, SIDEBAR_W - pad_x)
         y += 10
-
         for (key, val) in section["items"]:
+            if y >= y_max:
+                break
             col = _status_color(val) if key.lower() == "status" else _WHITE
             _put(sb, key, pad_x, y, scale=0.42, color=_DIM)
-            # right-align value
             (tw, _), _ = cv2.getTextSize(val, cv2.FONT_HERSHEY_SIMPLEX, 0.42, 1)
-            _put(sb, val, SIDEBAR_W - tw - pad_x, y, scale=0.42, color=col, bold=(key.lower()=="status"))
+            _put(sb, val, SIDEBAR_W - tw - pad_x, y,
+                 scale=0.42, color=col, bold=(key.lower() == "status"))
             y += 20
-
         y += 6
 
-    # ── Final verdict ──────────────────────────────────────
+    # ── Final verdict ──────────────────────────────────────────
     verdict_y = height - 70
     _divider(sb, verdict_y - 8, pad_x, SIDEBAR_W - pad_x)
 
     if final_ok is True:
-        vcolor = _GREEN
-        vlabel = "GOOD GEAR"
-        
+        vcolor, vlabel = _GREEN, "GOOD GEAR"
     elif final_ok is False:
-        vcolor = _RED
-        vlabel = "DEFECTIVE"
-        
+        vcolor, vlabel = _RED,   "DEFECTIVE"
     else:
-        vcolor = _DIM
-        vlabel = "PENDING..."
-    
+        vcolor, vlabel = _DIM,   "PENDING..."
 
     _draw_rounded_rect(sb,
-                       (pad_x, verdict_y),
+                       (pad_x,             verdict_y),
                        (SIDEBAR_W - pad_x, verdict_y + 34),
                        vcolor, radius=5)
-    label_full =  vlabel
-    (tw, _), _ = cv2.getTextSize(label_full, cv2.FONT_HERSHEY_SIMPLEX, 0.55, 2)
-    tx = pad_x + (SIDEBAR_W - 2*pad_x - tw) // 2
-    cv2.putText(sb, label_full, (tx, verdict_y + 23),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.55,
-                _BG if final_ok is not None else _DIM, 2, cv2.LINE_AA)
 
-    # ── Scale footer ───────────────────────────────────────
+    (tw, _), _ = cv2.getTextSize(vlabel, cv2.FONT_HERSHEY_SIMPLEX, 0.55, 2)
+    tx      = pad_x + (SIDEBAR_W - 2 * pad_x - tw) // 2
+    # FIX: use _BG for solid verdicts (text contrasts against colour bg),
+    #      _WHITE for PENDING (contrasts against dark _DIM bg).
+    txt_col = _BG if final_ok is not None else _WHITE
+    cv2.putText(sb, vlabel, (tx, verdict_y + 23),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.55, txt_col, 2, cv2.LINE_AA)
+
+    # ── Scale footer ───────────────────────────────────────────
     _put(sb, scale_text, pad_x, height - 14, scale=0.36, color=_DIM)
 
     return sb
 
 
 def attach_sidebar(frame, sidebar):
-    """
-    Horizontally concatenate `frame` and `sidebar`.
-    Sidebar height is resized to match frame if needed.
-    """
+    """Horizontally concatenate frame and sidebar (resizes sidebar height)."""
     fh = frame.shape[0]
     if sidebar.shape[0] != fh:
         sidebar = cv2.resize(sidebar, (SIDEBAR_W, fh))
