@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "ai-game-developer": {
+      "type": "http",
+      "url": "http://localhost:54841"
+    }
+  }
+}

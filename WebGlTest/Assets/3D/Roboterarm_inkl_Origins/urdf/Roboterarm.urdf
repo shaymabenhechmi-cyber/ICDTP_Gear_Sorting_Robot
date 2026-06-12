@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<robot name="Roboterarm_inkl_Origins">
+
+  <material name="grau">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+
+  <link name="world"/>
+
+  <link name="Basis">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Basis.obj"/>
+      </geometry>
+      <material name="grau"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Basis.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Arm1">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Arm1.obj"/>
+      </geometry>
+      <material name="grau"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Arm1.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Arm2">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Arm2.obj"/>
+      </geometry>
+      <material name="grau"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Arm2.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Arm3">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Arm3.obj"/>
+      </geometry>
+      <material name="grau"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Arm3.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Basis_Greifer">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.005" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.005"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Basis_Greifer.obj"/>
+      </geometry>
+      <material name="grau"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Basis_Greifer.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="SchiebeElement">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.2"/>
+      <inertia ixx="0.002" ixy="0.0" ixz="0.0" iyy="0.002" iyz="0.0" izz="0.002"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/SchiebeElement.obj"/>
+      </geometry>
+      <material name="grau"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/SchiebeElement.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Finger1">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Finger1.obj"/>
+      </geometry>
+      <material name="grau"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Finger1.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Finger2">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Finger2.obj"/>
+      </geometry>
+      <material name="grau"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Finger2.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Finger3">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Finger3.obj"/>
+      </geometry>
+      <material name="grau"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="meshes/stl/Finger3.obj"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_world_basis" type="fixed">
+    <parent link="world"/>
+    <child link="Basis"/>
+    <origin xyz="-0.045424 -0.152680 -0.017353" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="joint_basis_arm1" type="revolute">
+    <parent link="Basis"/>
+    <child link="Arm1"/>
+    <origin xyz="0.044650 0.153185 0.088606" rpy="0 0 0"/> 
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="1.0"/>
+  </joint>
+
+  <joint name="joint_arm1_arm2" type="revolute">
+    <parent link="Arm1"/>
+    <child link="Arm2"/>
+    <origin xyz="0.000799 -0.002528 0.141207" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-0.998" upper="0.820" velocity="1.0"/>
+  </joint>
+
+  <joint name="joint_arm2_arm3" type="revolute">
+    <parent link="Arm2"/>
+    <child link="Arm3"/>
+    <origin xyz="-0.116278 -0.002597 0.081972" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.745" upper="0.368" velocity="1.0"/>
+  </joint>
+
+  <joint name="joint_arm3_greifer" type="revolute">
+    <parent link="Arm3"/>
+    <child link="Basis_Greifer"/>
+    <origin xyz="-0.157147 -0.008418 0.001858" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.522" upper="1.396" velocity="1.0"/>
+  </joint>
+
+  <joint name="joint_greifer_schiebe" type="prismatic">
+    <parent link="Basis_Greifer"/>
+    <child link="SchiebeElement"/>
+    <origin xyz="-0.069096 -0.004177 0.004207" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/> 
+    <limit effort="500.0" lower="0.0" upper="0.008" velocity="0.5"/>
+  </joint>
+
+  <joint name="joint_greifer_finger1" type="revolute">
+    <parent link="Basis_Greifer"/>
+    <child link="Finger1"/>
+    <origin xyz="-0.084871 0.026007 0.002786" rpy="0 0 0"/>
+    <axis xyz="0 -0.107 0.994"/>
+    <limit effort="100.0" lower="-0.157" upper="0.157" velocity="1.0"/>
+  </joint>
+
+  <joint name="joint_greifer_finger2" type="revolute">
+    <parent link="Basis_Greifer"/>
+    <child link="Finger2"/>
+    <origin xyz="-0.080640 -0.018864 0.032031" rpy="0 0 0"/>
+    <axis xyz="0 -0.862 -0.508"/>
+    <limit effort="100.0" lower="0.005" upper="0.314" velocity="1.0"/>
+  </joint>
+
+  <joint name="joint_greifer_finger3" type="revolute">
+    <parent link="Basis_Greifer"/>
+    <child link="Finger3"/>
+    <origin xyz="-0.083303 -0.021974 -0.021506" rpy="0 0 0"/>
+    <axis xyz="0 0.700 -0.715"/>
+    <limit effort="100.0" lower="-0.148" upper="0.140" velocity="1.0"/>
+  </joint>
+
+</robot>

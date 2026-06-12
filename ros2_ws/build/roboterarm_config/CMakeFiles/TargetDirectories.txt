@@ -1,0 +1,9 @@
+/home/robopi2/ros2_ws/build/roboterarm_config/CMakeFiles/uninstall.dir
+/home/robopi2/ros2_ws/build/roboterarm_config/CMakeFiles/roboterarm_config_uninstall.dir
+/home/robopi2/ros2_ws/build/roboterarm_config/CMakeFiles/test.dir
+/home/robopi2/ros2_ws/build/roboterarm_config/CMakeFiles/edit_cache.dir
+/home/robopi2/ros2_ws/build/roboterarm_config/CMakeFiles/rebuild_cache.dir
+/home/robopi2/ros2_ws/build/roboterarm_config/CMakeFiles/list_install_components.dir
+/home/robopi2/ros2_ws/build/roboterarm_config/CMakeFiles/install.dir
+/home/robopi2/ros2_ws/build/roboterarm_config/CMakeFiles/install/local.dir
+/home/robopi2/ros2_ws/build/roboterarm_config/CMakeFiles/install/strip.dir

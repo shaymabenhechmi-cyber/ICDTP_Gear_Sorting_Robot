@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: robot-middleware
+Version: 0.0.1
+Summary: Robot middleware between Unity and physical robot
+Maintainer: robopi2
+Maintainer-email: user@todo.todo
+License: Apache-2.0

@@ -1,0 +1,123 @@
+/*
+ * motor_defines.h
+ *
+ *  Created on: Aug 5, 2025
+ *      Author: jakob
+ */
+
+#ifndef INC_MOTOR_DEFINES_H_
+#define INC_MOTOR_DEFINES_H_
+
+//Global defines
+#define STEPS_PER_REV 200.0f
+#define DEGREES_PER_REV 360.0f
+
+//MOTOR 1 defines
+#define GEAR_RATIO_M_1 10
+#define MICROSTEPS_M_1 32
+
+#define STEPS_PER_SEC_M_1 160
+#define STEPS_PER_SEC2_M_1 125
+
+#define V_MAX_M_1 (STEPS_PER_SEC_M_1 * MICROSTEPS_M_1)
+#define ACC_MAX_M_1 (STEPS_PER_SEC2_M_1 * MICROSTEPS_M_1)
+#define DEC_MAX_M_1 (STEPS_PER_SEC2_M_1 * MICROSTEPS_M_1)
+
+#define HOLD_CURRENT_PERCENT_M_1 30
+#define RUN_CURRENT_PERCENT_M_1 70
+
+#define POSITION_LIMIT_M_1 (((STEPS_PER_REV * (float)(MICROSTEPS_M_1) / DEGREES_PER_REV) * 345.0f) * GEAR_RATIO_M_1)
+
+#define LOW_COUNTER_THRESHOLD_M_1 3
+#define STALL_MAX_M_1 168.0f
+#define STALL_BUFFER_M_1 25
+
+//MOTOR 2 defines
+#define GEAR_RATIO_M_2 7.5
+#define MICROSTEPS_M_2 32
+
+#define STEPS_PER_SEC_M_2 100
+#define STEPS_PER_SEC2_M_2 80
+
+#define V_MAX_M_2 (STEPS_PER_SEC_M_2 * MICROSTEPS_M_2)
+#define ACC_MAX_M_2 (STEPS_PER_SEC2_M_2 * MICROSTEPS_M_2)
+#define DEC_MAX_M_2 (STEPS_PER_SEC2_M_2 * MICROSTEPS_M_2)
+
+#define HOLD_CURRENT_PERCENT_M_2 100
+#define RUN_CURRENT_PERCENT_M_2 100
+
+#define POSITION_LIMIT_M_2 (((STEPS_PER_REV * (float)(MICROSTEPS_M_2) / DEGREES_PER_REV) * 116.0f) * GEAR_RATIO_M_2)
+
+#define LOW_COUNTER_THRESHOLD_M_2 3
+#define STALL_MAX_M_2 82.4f
+#define STALL_BUFFER_M_2 40
+
+//MOTOR 3 defines
+#define GEAR_RATIO_M_3 7.5
+#define MICROSTEPS_M_3 32
+
+#define STEPS_PER_SEC_M_3 150
+#define STEPS_PER_SEC2_M_3 200
+
+#define V_MAX_M_3 (STEPS_PER_SEC_M_3 * MICROSTEPS_M_3)
+#define ACC_MAX_M_3 (STEPS_PER_SEC2_M_3 * MICROSTEPS_M_3)
+#define DEC_MAX_M_3 (STEPS_PER_SEC2_M_3 * MICROSTEPS_M_3)
+
+#define HOLD_CURRENT_PERCENT_M_3 90
+#define RUN_CURRENT_PERCENT_M_3 90
+
+#define POSITION_LIMIT_M_3 (((STEPS_PER_REV * (float)(MICROSTEPS_M_3) / DEGREES_PER_REV) * 116.0f) * GEAR_RATIO_M_3)
+
+#define LOW_COUNTER_THRESHOLD_M_3 3
+#define STALL_MAX_M_3 140.0f
+#define STALL_BUFFER_M_3 25
+
+//MOTOR 4 defines
+#define GEAR_RATIO_M_4 7.5
+#define MICROSTEPS_M_4 8
+
+#define STEPS_PER_SEC_M_4 200
+#define STEPS_PER_SEC2_M_4 150
+
+#define V_MAX_M_4 (STEPS_PER_SEC_M_4 * MICROSTEPS_M_4)
+#define ACC_MAX_M_4 (STEPS_PER_SEC2_M_4 * MICROSTEPS_M_4)
+#define DEC_MAX_M_4 (STEPS_PER_SEC2_M_4 * MICROSTEPS_M_4)
+
+#define HOLD_CURRENT_PERCENT_M_4 100
+#define RUN_CURRENT_PERCENT_M_4 100
+
+#define POSITION_LIMIT_M_4 (((STEPS_PER_REV * (float)(MICROSTEPS_M_4) / DEGREES_PER_REV) * 180.0f) * GEAR_RATIO_M_4)
+
+#define LOW_COUNTER_THRESHOLD_M_4 1
+#define STALL_MAX_M_4 39.0f
+#define STALL_BUFFER_M_4 7
+
+//MOTOR 5 defines
+#define GEAR_RATIO_M_5 1
+#define MICROSTEPS_M_5 1
+
+#define STEPS_PER_SEC_M_5 1000
+#define STEPS_PER_SEC2_M_5 800
+
+#define V_MAX_M_5 (STEPS_PER_SEC_M_5 * MICROSTEPS_M_5)
+#define ACC_MAX_M_5 (STEPS_PER_SEC2_M_5 * MICROSTEPS_M_5)
+#define DEC_MAX_M_5 (STEPS_PER_SEC2_M_5 * MICROSTEPS_M_5)
+
+#define HOLD_CURRENT_PERCENT_M_5 50
+#define RUN_CURRENT_PERCENT_M_5 50
+
+#define GRIPPER_POS_LIMIT 20100
+#define POSITION_LIMIT_M_5 (GRIPPER_POS_LIMIT * GEAR_RATIO_M_5)
+
+// Fixed gripper positions (steps). GRIPPER_STEPS_CLOSED must be measured on real hardware.
+// After goHome(), Motor 5 position is 0 = fully open.
+// Procedure: flash demo code, add printf after grip(), read motors[4]->motion.position.
+#define GRIPPER_STEPS_OPEN    0
+#define GRIPPER_STEPS_CLOSED  20000  // TODO: replace with measured value
+
+#define LOW_COUNTER_THRESHOLD_M_5 3 //1
+#define STALL_MAX_M_5 190.0f
+#define STALL_BUFFER_M_5 10 //25
+#define STALL_GRIP_BUFFER_M_5 15 //37
+
+#endif /* INC_MOTOR_DEFINES_H_ */

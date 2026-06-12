@@ -1,0 +1,37 @@
+running egg_info
+creating ../../build/robot_middleware/robot_middleware.egg-info
+writing ../../build/robot_middleware/robot_middleware.egg-info/PKG-INFO
+writing dependency_links to ../../build/robot_middleware/robot_middleware.egg-info/dependency_links.txt
+writing entry points to ../../build/robot_middleware/robot_middleware.egg-info/entry_points.txt
+writing requirements to ../../build/robot_middleware/robot_middleware.egg-info/requires.txt
+writing top-level names to ../../build/robot_middleware/robot_middleware.egg-info/top_level.txt
+writing manifest file '../../build/robot_middleware/robot_middleware.egg-info/SOURCES.txt'
+reading manifest file '../../build/robot_middleware/robot_middleware.egg-info/SOURCES.txt'
+writing manifest file '../../build/robot_middleware/robot_middleware.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/robopi2/ros2_ws/build/robot_middleware/build
+creating /home/robopi2/ros2_ws/build/robot_middleware/build/lib
+creating /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware
+copying robot_middleware/robot_middleware_node.py -> /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware
+copying robot_middleware/__init__.py -> /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware
+running install
+running install_lib
+creating /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware
+copying /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware/robot_middleware_node.py -> /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware
+copying /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware/__init__.py -> /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware
+byte-compiling /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware/robot_middleware_node.py to robot_middleware_node.cpython-312.pyc
+byte-compiling /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware/__init__.py to __init__.cpython-312.pyc
+running install_data
+creating /home/robopi2/ros2_ws/install/robot_middleware/share/ament_index
+creating /home/robopi2/ros2_ws/install/robot_middleware/share/ament_index/resource_index
+creating /home/robopi2/ros2_ws/install/robot_middleware/share/ament_index/resource_index/packages
+copying resource/robot_middleware -> /home/robopi2/ros2_ws/install/robot_middleware/share/ament_index/resource_index/packages
+copying package.xml -> /home/robopi2/ros2_ws/install/robot_middleware/share/robot_middleware
+creating /home/robopi2/ros2_ws/install/robot_middleware/share/robot_middleware/launch
+copying launch/robot_middleware_launch.py -> /home/robopi2/ros2_ws/install/robot_middleware/share/robot_middleware/launch
+running install_egg_info
+Copying ../../build/robot_middleware/robot_middleware.egg-info to /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware-0.0.1-py3.12.egg-info
+running install_scripts
+Installing robot_middleware_node script to /home/robopi2/ros2_ws/install/robot_middleware/lib/robot_middleware
+writing list of installed files to '/home/robopi2/ros2_ws/build/robot_middleware/install.log'

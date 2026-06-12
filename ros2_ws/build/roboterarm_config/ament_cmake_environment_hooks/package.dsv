@@ -1,0 +1,4 @@
+source;share/roboterarm_config/local_setup.bash
+source;share/roboterarm_config/local_setup.dsv
+source;share/roboterarm_config/local_setup.sh
+source;share/roboterarm_config/local_setup.zsh

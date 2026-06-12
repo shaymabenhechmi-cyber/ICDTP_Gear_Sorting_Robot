@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Roboterarm_mit_Objs">
+    <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+    <!-- Import Roboterarm_mit_Objs urdf file -->
+    <xacro:include filename="$(find roboterarm_description)/urdf/Roboterarm.urdf" />
+
+    <!-- Import control_xacro -->
+    <xacro:include filename="Roboterarm_mit_Objs.ros2_control.xacro" />
+
+
+    <xacro:Roboterarm_mit_Objs_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+
+</robot>

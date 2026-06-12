@@ -1,0 +1,39 @@
+[1.117s] Invoking command in '/home/robopi2/ros2_ws/src/robot_middleware': CMAKE_PREFIX_PATH=/home/robopi2/ros2_ws/install/my_robot_interfaces:/home/robopi2/ros2_ws/install/roboterarm_config:/home/robopi2/ros2_ws/install/roboterarm_description:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor PYTHONPATH=/home/robopi2/ros2_ws/build/robot_middleware/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages:/home/robopi2/ros2_ws/install/my_robot_interfaces/lib/python3.12/site-packages:/home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_middleware build --build-base /home/robopi2/ros2_ws/build/robot_middleware/build install --record /home/robopi2/ros2_ws/build/robot_middleware/install.log --single-version-externally-managed install_data
+[1.457s] running egg_info
+[1.468s] creating ../../build/robot_middleware/robot_middleware.egg-info
+[1.498s] writing ../../build/robot_middleware/robot_middleware.egg-info/PKG-INFO
+[1.498s] writing dependency_links to ../../build/robot_middleware/robot_middleware.egg-info/dependency_links.txt
+[1.499s] writing entry points to ../../build/robot_middleware/robot_middleware.egg-info/entry_points.txt
+[1.499s] writing requirements to ../../build/robot_middleware/robot_middleware.egg-info/requires.txt
+[1.499s] writing top-level names to ../../build/robot_middleware/robot_middleware.egg-info/top_level.txt
+[1.499s] writing manifest file '../../build/robot_middleware/robot_middleware.egg-info/SOURCES.txt'
+[1.546s] reading manifest file '../../build/robot_middleware/robot_middleware.egg-info/SOURCES.txt'
+[1.547s] writing manifest file '../../build/robot_middleware/robot_middleware.egg-info/SOURCES.txt'
+[1.547s] running build
+[1.547s] running build_py
+[1.547s] creating /home/robopi2/ros2_ws/build/robot_middleware/build
+[1.547s] creating /home/robopi2/ros2_ws/build/robot_middleware/build/lib
+[1.547s] creating /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware
+[1.548s] copying robot_middleware/robot_middleware_node.py -> /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware
+[1.548s] copying robot_middleware/__init__.py -> /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware
+[1.548s] running install
+[1.558s] running install_lib
+[1.580s] creating /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware
+[1.580s] copying /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware/robot_middleware_node.py -> /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware
+[1.581s] copying /home/robopi2/ros2_ws/build/robot_middleware/build/lib/robot_middleware/__init__.py -> /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware
+[1.581s] byte-compiling /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware/robot_middleware_node.py to robot_middleware_node.cpython-312.pyc
+[1.584s] byte-compiling /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware/__init__.py to __init__.cpython-312.pyc
+[1.584s] running install_data
+[1.584s] creating /home/robopi2/ros2_ws/install/robot_middleware/share/ament_index
+[1.585s] creating /home/robopi2/ros2_ws/install/robot_middleware/share/ament_index/resource_index
+[1.585s] creating /home/robopi2/ros2_ws/install/robot_middleware/share/ament_index/resource_index/packages
+[1.585s] copying resource/robot_middleware -> /home/robopi2/ros2_ws/install/robot_middleware/share/ament_index/resource_index/packages
+[1.585s] copying package.xml -> /home/robopi2/ros2_ws/install/robot_middleware/share/robot_middleware
+[1.585s] creating /home/robopi2/ros2_ws/install/robot_middleware/share/robot_middleware/launch
+[1.585s] copying launch/robot_middleware_launch.py -> /home/robopi2/ros2_ws/install/robot_middleware/share/robot_middleware/launch
+[1.585s] running install_egg_info
+[1.611s] Copying ../../build/robot_middleware/robot_middleware.egg-info to /home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages/robot_middleware-0.0.1-py3.12.egg-info
+[1.612s] running install_scripts
+[1.773s] Installing robot_middleware_node script to /home/robopi2/ros2_ws/install/robot_middleware/lib/robot_middleware
+[1.773s] writing list of installed files to '/home/robopi2/ros2_ws/build/robot_middleware/install.log'
+[1.858s] Invoked command in '/home/robopi2/ros2_ws/src/robot_middleware' returned '0': CMAKE_PREFIX_PATH=/home/robopi2/ros2_ws/install/my_robot_interfaces:/home/robopi2/ros2_ws/install/roboterarm_config:/home/robopi2/ros2_ws/install/roboterarm_description:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor PYTHONPATH=/home/robopi2/ros2_ws/build/robot_middleware/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages:/home/robopi2/ros2_ws/install/my_robot_interfaces/lib/python3.12/site-packages:/home/robopi2/ros2_ws/install/robot_middleware/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/robot_middleware build --build-base /home/robopi2/ros2_ws/build/robot_middleware/build install --record /home/robopi2/ros2_ws/build/robot_middleware/install.log --single-version-externally-managed install_data

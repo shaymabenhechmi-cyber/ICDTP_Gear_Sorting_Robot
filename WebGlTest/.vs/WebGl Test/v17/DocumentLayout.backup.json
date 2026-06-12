@@ -1,0 +1,57 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\xrstu\\Desktop\\WebGl Test\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6F548C58-EA59-4715-75AA-D15E9DB9E120}|Assembly-CSharp.csproj|c:\\users\\xrstu\\desktop\\webgl test\\assets\\scrips\\robotapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F548C58-EA59-4715-75AA-D15E9DB9E120}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\robotapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F548C58-EA59-4715-75AA-D15E9DB9E120}|Assembly-CSharp.csproj|C:\\Users\\xrstu\\Desktop\\WebGl Test\\assets\\scrips\\orbitcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F548C58-EA59-4715-75AA-D15E9DB9E120}|Assembly-CSharp.csproj|solutionrelative:assets\\scrips\\orbitcamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrbitCamera.cs",
+              "DocumentMoniker": "C:\\Users\\xrstu\\Desktop\\WebGl Test\\Assets\\Scrips\\OrbitCamera.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\OrbitCamera.cs",
+              "ToolTip": "C:\\Users\\xrstu\\Desktop\\WebGl Test\\Assets\\Scrips\\OrbitCamera.cs",
+              "RelativeToolTip": "Assets\\Scrips\\OrbitCamera.cs",
+              "ViewState": "AgIAALUAAAAAAAAAAAAuwL4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T16:50:21.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RobotAPIController.cs",
+              "DocumentMoniker": "C:\\Users\\xrstu\\Desktop\\WebGl Test\\Assets\\Scrips\\RobotAPIController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scrips\\RobotAPIController.cs",
+              "ToolTip": "C:\\Users\\xrstu\\Desktop\\WebGl Test\\Assets\\Scrips\\RobotAPIController.cs",
+              "RelativeToolTip": "Assets\\Scrips\\RobotAPIController.cs",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAswLoAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T11:41:18.005Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

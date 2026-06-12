@@ -1,0 +1,66 @@
+[0.013s] Invoking command in '/home/robopi2/ros2_ws/build/roboterarm_config': CMAKE_PREFIX_PATH=/home/robopi2/ros2_ws/install/roboterarm_description:/home/robopi2/ros2_ws/install/roboterarm_config:/home/robopi2/ros2_ws/install/my_robot_interfaces:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/robopi2/ros2_ws/install/robot_middleware:/opt/ros/jazzy /usr/bin/cmake /home/robopi2/ros2_ws/src/roboterarm_config -DCMAKE_INSTALL_PREFIX=/home/robopi2/ros2_ws/install/roboterarm_config
+[0.120s] -- The C compiler identification is GNU 13.3.0
+[0.227s] -- The CXX compiler identification is GNU 13.3.0
+[0.252s] -- Detecting C compiler ABI info
+[0.426s] -- Detecting C compiler ABI info - done
+[0.441s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.441s] -- Detecting C compile features
+[0.442s] -- Detecting C compile features - done
+[0.457s] -- Detecting CXX compiler ABI info
+[0.651s] -- Detecting CXX compiler ABI info - done
+[0.663s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.664s] -- Detecting CXX compile features
+[0.665s] -- Detecting CXX compile features - done
+[0.669s] -- Found ament_cmake: 2.5.5 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.913s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[1.274s] -- Configuring done (1.2s)
+[1.275s] -- Generating done (0.0s)
+[1.278s] -- Build files have been written to: /home/robopi2/ros2_ws/build/roboterarm_config
+[1.286s] Invoked command in '/home/robopi2/ros2_ws/build/roboterarm_config' returned '0': CMAKE_PREFIX_PATH=/home/robopi2/ros2_ws/install/roboterarm_description:/home/robopi2/ros2_ws/install/roboterarm_config:/home/robopi2/ros2_ws/install/my_robot_interfaces:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/robopi2/ros2_ws/install/robot_middleware:/opt/ros/jazzy /usr/bin/cmake /home/robopi2/ros2_ws/src/roboterarm_config -DCMAKE_INSTALL_PREFIX=/home/robopi2/ros2_ws/install/roboterarm_config
+[1.288s] Invoking command in '/home/robopi2/ros2_ws/build/roboterarm_config': CMAKE_PREFIX_PATH=/home/robopi2/ros2_ws/install/roboterarm_description:/home/robopi2/ros2_ws/install/roboterarm_config:/home/robopi2/ros2_ws/install/my_robot_interfaces:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/robopi2/ros2_ws/install/robot_middleware:/opt/ros/jazzy /usr/bin/cmake --build /home/robopi2/ros2_ws/build/roboterarm_config -- -j4 -l4
+[1.360s] Invoked command in '/home/robopi2/ros2_ws/build/roboterarm_config' returned '0': CMAKE_PREFIX_PATH=/home/robopi2/ros2_ws/install/roboterarm_description:/home/robopi2/ros2_ws/install/roboterarm_config:/home/robopi2/ros2_ws/install/my_robot_interfaces:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/robopi2/ros2_ws/install/robot_middleware:/opt/ros/jazzy /usr/bin/cmake --build /home/robopi2/ros2_ws/build/roboterarm_config -- -j4 -l4
+[1.362s] Invoking command in '/home/robopi2/ros2_ws/build/roboterarm_config': CMAKE_PREFIX_PATH=/home/robopi2/ros2_ws/install/roboterarm_description:/home/robopi2/ros2_ws/install/roboterarm_config:/home/robopi2/ros2_ws/install/my_robot_interfaces:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/robopi2/ros2_ws/install/robot_middleware:/opt/ros/jazzy /usr/bin/cmake --install /home/robopi2/ros2_ws/build/roboterarm_config
+[1.377s] -- Install configuration: ""
+[1.377s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/ament_index/resource_index/package_run_dependencies/roboterarm_config
+[1.378s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/ament_index/resource_index/parent_prefix_path/roboterarm_config
+[1.378s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/environment/ament_prefix_path.sh
+[1.378s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/environment/ament_prefix_path.dsv
+[1.379s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/environment/path.sh
+[1.379s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/environment/path.dsv
+[1.379s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/local_setup.bash
+[1.379s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/local_setup.sh
+[1.380s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/local_setup.zsh
+[1.380s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/local_setup.dsv
+[1.380s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/package.dsv
+[1.380s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/ament_index/resource_index/packages/roboterarm_config
+[1.381s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/cmake/roboterarm_configConfig.cmake
+[1.381s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/cmake/roboterarm_configConfig-version.cmake
+[1.381s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/package.xml
+[1.381s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch
+[1.381s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch/move_group.launch.py
+[1.382s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch/spawn_controllers.launch.py
+[1.382s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch/static_virtual_joint_tfs.launch.py
+[1.382s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch/demo.launch.py
+[1.382s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch/setup_assistant.launch.py
+[1.382s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch/unity_simulation.launch.py
+[1.383s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch/rsp.launch.py
+[1.383s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch/warehouse_db.launch.py
+[1.383s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/launch/moveit_rviz.launch.py
+[1.383s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/lib/roboterarm_config/stm32_serial_node.py
+[1.383s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/lib/roboterarm_config/unity_moveit_bridge.py
+[1.384s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config
+[1.384s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/joint_limits.yaml
+[1.384s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/Roboterarm_mit_Objs.ros2_control.xacro
+[1.384s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/initial_positions.yaml
+[1.385s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/ros2_controllers.yaml
+[1.385s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/stm32_calibration.yaml
+[1.385s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/sensors_3d.yaml
+[1.385s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/Roboterarm_mit_Objs.srdf
+[1.385s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/Roboterarm_mit_Objs.urdf.xacro
+[1.385s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/moveit_controllers.yaml
+[1.385s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/pilz_cartesian_limits.yaml
+[1.386s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/trajectory_execution.yaml
+[1.386s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/moveit.rviz
+[1.386s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/config/kinematics.yaml
+[1.386s] -- Installing: /home/robopi2/ros2_ws/install/roboterarm_config/share/roboterarm_config/.setup_assistant
+[1.390s] Invoked command in '/home/robopi2/ros2_ws/build/roboterarm_config' returned '0': CMAKE_PREFIX_PATH=/home/robopi2/ros2_ws/install/roboterarm_description:/home/robopi2/ros2_ws/install/roboterarm_config:/home/robopi2/ros2_ws/install/my_robot_interfaces:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/robopi2/ros2_ws/install/robot_middleware:/opt/ros/jazzy /usr/bin/cmake --install /home/robopi2/ros2_ws/build/roboterarm_config

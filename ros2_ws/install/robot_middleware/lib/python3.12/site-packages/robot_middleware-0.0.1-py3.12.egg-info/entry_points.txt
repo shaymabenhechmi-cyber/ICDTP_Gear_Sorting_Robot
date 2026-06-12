@@ -1,0 +1,2 @@
+[console_scripts]
+robot_middleware_node = robot_middleware.robot_middleware_node:main

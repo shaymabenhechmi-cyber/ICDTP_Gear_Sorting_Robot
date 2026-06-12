@@ -1,0 +1,10 @@
+# Default initial positions for Roboterarm_mit_Objs's ros2_control fake system
+
+initial_positions:
+  joint_arm1_arm2: 0
+  joint_arm2_arm3: 0
+  joint_arm3_greifer: 0
+  joint_basis_arm1: 0
+  joint_greifer_finger1: 0
+  joint_greifer_finger2: 0
+  joint_greifer_finger3: 0
